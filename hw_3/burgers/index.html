@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="#" id="burgerForm">
+		<fieldset>
+			<legend>Выберите размер бургера</legend>
+			<input type="radio" name="size" value="bigBurger" id="bigBurger" class="burgerInput" data-price="100" data-calories="40" checked>
+			<label for="bigBurger">Большой бургер</label>
+			<input type="radio" name="size" value="smallBurger" id="smallBurger" class="burgerInput" data-price="50" data-calories="20">
+			<label for="smallBurger">Маленький бургер</label>
+		</fieldset>
+		<fieldset>
+			<legend>Выберите начинку</legend>
+			<input type="radio" name="stuffing" value="cheese" id="cheese" checked class="burgerInput" data-price="10" data-calories="20">
+			<label for="cheese">Сыр</label>
+			<input type="radio" name="stuffing" value="salad" id="salad" class="burgerInput" data-price="20" data-calories="5">
+			<label for="salad">Салат</label>
+			<input type="radio" name="stuffing" value="potato" id="potato" class="burgerInput" data-price="15" data-calories="10">
+			<label for="potato">Картошка</label>
+		</fieldset>
+		<fieldset>
+			<legend>Выберите добавки</legend>
+			<input type="checkbox" name="topping" value="spice" id="spice" class="burgerInput" data-price="15" data-calories="0">
+			<label for="spice">Специи</label>
+			<input type="checkbox" name="topping" value="sauce" id="sauce" class="burgerInput" data-price="20" data-calories="5">
+			<label for="sauce">Соус</label>
+		</fieldset>
+		<input type="button" value="Рассчитать" id="calculate">
+	</form>
+	<div class="result">
+		<p>Стоимость: <span id="price">0</span>р</p>
+		<p>Калорийность: <span id="calories">0</span>Ккал</p>
+	</div>
+	<script src="js/Param.js"></script>
+	<script src="js/Burger.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
