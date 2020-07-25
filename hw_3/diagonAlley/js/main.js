@@ -1,20 +1,34 @@
 'use strict';
 
+const API = 'https://raw.githubusercontent.com/RandyMarsh1993/diagonAlley_API/master/responses';
+
 class ProductsList {
 	constructor(container = '.products') {
 		this.container = container;
 		this.goods = [];
 		this.allProducts = [];
-		this._fetchProducts();
-		this.render();
+		this._getProducts()
+			.then(data => {
+				this.goods = [...data];
+				this.render();
+				basket.initBuyBtns();
+			});
 	}
 
+	/*
 	_fetchProducts() {
 		this.goods = [
 			{ id: 1, title: 'Ковёр-самолёт', price: 700 },
 			{ id: 2, title: 'Нимбус 2000', price: 2400 },
 			{ id: 3, title: 'Шапка-невидимка', price: 230 },
 		];
+	}
+	*/
+
+	_getProducts() {
+		return fetch(`${API}/catalogData.json`)
+			.then(result => result.json())
+			.catch(err => console.log(err))
 	}
 
 	render() {
@@ -60,43 +74,147 @@ class ProductItem {
 	}
 }
 
-//Очень сильно сомневаюсь в правильности выполнения 1 задания.
-
 class Basket {
 	constructor() {
 		this.products = {};
 	}
 
+	initBuyBtns() {
+		this.buyBtns = document.querySelectorAll('.toBasketBtn');
+		this.buyBtns.forEach(function(button) {
+			button.addEventListener('click', (event) => {
+				let id = event.srcElement.dataset.id;
+				let name = event.srcElement.dataset.name;
+				let price = event.srcElement.dataset.price;
+				basket.addProduct({id: id, price: price, name: name});
+			});
+		});
+	}
+
 	//метод для добавления товаров в корзину
-	addProductToBasket() {}
+	addProduct(product) {
+		this.addProductToObject(product);
+		this.addProductToTable(product);
+		this.renderTotalSum();
+		this.initRemoveBtnsListeners();
+	}
+
+	addProductToObject(product) {
+		if (this.products[product.id] == undefined) {
+			this.products[product.id] = {
+				name: product.name,
+				price: product.price,
+				count: 1
+			}
+		} else {
+			this.products[product.id].count++;
+		}
+	}
+
+	addProductToTable(product) {
+		let isProductExist = document.querySelector(`.productCount[data-id="${product.id}"]`);
+		if (isProductExist) {
+			isProductExist.textContent++;
+			return;
+		}
+		let productRow = `
+		<tr>
+			<td>${product.id}</td>
+			<td>${product.name}</td>
+			<td>${product.price}$</td>
+			<td class="productCount" data-id="${product.id}">1</td>
+			<td><i class="far fa-trash-alt removeProductBtn" data-id="${product.id}"></i></td>
+		</tr>`;
+
+		let tbody = document.querySelector('tbody');
+		tbody.insertAdjacentHTML('beforeend', productRow);
+	}
+
+	renderTotalSum() {
+		document.querySelector('.sumPrice').textContent = `${this.getSum()}$`;
+	}
+
+	getSum() {
+		let sum = null;
+		for (let product in this.products) {
+			sum += this.products[product].price * this.products[product].count;
+		}
+		return sum;
+	}
+
+	initRemoveBtnsListeners() {
+		let removeBtns = document.querySelectorAll('.removeProductBtn');
+		removeBtns.forEach(button => {
+			button.addEventListener('click', this.removeProductListener);
+		});
+	}
+
+	removeProductListener(event) {
+		basket.removeProduct(event);
+		basket.renderTotalSum();
+	}
 
 	//метод удаления товаров из корзины
-	removeProductFromBasket() {}
+	removeProduct(event) {
+		let id = event.srcElement.dataset.id;
+		this.removeProductFromTable(id);
+		this.removeProductFromObject(id);
+	}
 
-	//метод рассчета общей стоимости товаров  в корзине
-	getTotalSum() {}
-	
-	//метод вывода общей стоимости товаров в корзине
-	renderTotalSum() {}
+	removeProductFromTable(id) {
+		let countProduct = document.querySelector(`.productCount[data-id="${id}"]`);
+		if (countProduct.textContent === '1') {
+			countProduct.parentNode.remove();
+		} else {
+			countProduct.textContent--;
+		}
+	}
+
+	removeProductFromObject(id) {
+		if (this.products[id].count === '1') {
+			delete this.products[id];
+		} else {
+			this.products[id].count--;
+		}
+	}
 
 	//метод оформления заказа
 	buyProducts() {}
 }
 
 class BasketItem {
-	constructor() {
-		
-	}
-
-	//метод проверки доступности товара
-	checkProductAvailability() {}
-
-	renderProductInBasket() {}
+	
 }
 
 const list = new ProductsList();
-list.sumPrices();
+const basket = new Basket();
 
+//const buyBtns = document.querySelectorAll('.toBasketBtn');
+const showBasketBtn = document.getElementById('openBasketBtn');
+const closeBasketBtn = document.getElementById('closeBasketBtn');
+const basketWindow = document.querySelector('.basketWindow');
+
+showBasketBtn.addEventListener('click', () => {
+	basketWindow.classList.remove('animate__fadeOut');
+	basketWindow.classList.remove('hidden');
+	basketWindow.classList.add('animate__fadeIn');
+});
+
+closeBasketBtn.addEventListener('click', () => {
+	basketWindow.classList.remove('animate__fadeIn');
+	setTimeout(() => basketWindow.classList.add('hidden'), 1000);
+	basketWindow.classList.add('animate__fadeOut');
+});
+
+/*
+buyBtns.forEach(function(button) {
+	button.addEventListener('click', (event) => {
+		let id = event.srcElement.dataset.id;
+		let name = event.srcElement.dataset.name;
+		let price = event.srcElement.dataset.price;
+		basket.addProduct({id: id, price: price, name: name});
+	});
+});*/
 
 /*
 const products = [
