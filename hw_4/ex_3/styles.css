@@ -1,0 +1,59 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 80px 120px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+input {
+	-webkit-appearance: none;
+	margin-bottom: 20px;
+	height: 30px;
+	font-size: 18px;
+	outline: none;
+	border: 2px solid #555555;
+}
+
+input:invalid:not(:placeholder-shown) {
+	background: rgb(253, 146, 146);
+	border-color: rgb(196, 8, 8);
+}
+
+input:focus:invalid {
+	outline: none;
+}
+
+em {
+	color: red;
+}
+
+textarea {
+	outline: none;
+	font-size: 18px;
+}
+
+.submitBtn {
+	padding: 10px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.error {
+	color: #fff;
+	background-color: #880000;
+	border-radius: 5px;
+}
+
+.error.active {
+	margin-top: 10px;
+	padding: 10px;
+  }
