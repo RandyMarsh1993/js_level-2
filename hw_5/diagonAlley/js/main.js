@@ -1,5 +1,3 @@
-'use strict';
-
 const API = 'https://raw.githubusercontent.com/RandyMarsh1993/diagonAlley_API/master/responses';
 
 const app = new Vue({
@@ -10,6 +8,7 @@ const app = new Vue({
 		img: 'img/img1.jpg',
 		filteredProducts: [],
 		basket: [],
+		basketUrl: '/getBasket.json',
 		isVisibleBasket: false,
 		sumPrice: 0,
 		searchLine: '',
@@ -22,21 +21,32 @@ const app = new Vue({
 				.catch(err => console.log(err))
 		},
 		addProduct(product) {
-			if (!product) {
-				basket.push(product);
-				this.getSumPrice();
-				this.checkBasket();
-			}
-			if (product) {
-				product.product.count++;
-				this.getSumPrice();
-				this.checkBasket();
-			}
+			this.getJson(`${API}/addToBasket.json`)
+				.then(data => {
+					if (data.result === 1) {
+						let isFound = this.basket.find(elem => elem.id === product.id);
+						if (isFound) {
+							isFound.count++;
+						} else {
+							const prod = Object.assign({count: 1}, product);
+							this.basket.push(prod);
+						}
+					}
+					this.getSumPrice();
+				});
 		},
 		removeProduct(product) {
-			product.product.count--;
-			this.getSumPrice();
-			this.checkBasket();
+			this.getJson(`${API}/addToBasket.json`)
+				.then(data => {
+					if (data.result === 1) {
+						if (product.count > 1) {
+							product.count--;
+						} else {
+							this.basket.splice(this.basket.indexOf(product), 1);
+						}
+					}
+					this.getSumPrice();
+				});
 		},
 		getSumPrice() {
 			this.sumPrice = 0;
@@ -47,24 +57,22 @@ const app = new Vue({
 		filterProducts() {
 			const filter = new RegExp(this.searchLine, 'i');
 			this.filteredProducts = this.products.filter(product => filter.test(product.title));
-		},
-		checkBasket() {
-			if (this.sumPrice > 0) {
-				this.isBasketEmpty = false;
-			} else {
-				this.isBasketEmpty = true;
-			}
 		}
 	},
 	mounted() {
+		this.getJson(`${API + this.basketUrl}`)
+			.then(data => {
+				for (let product of data.contents) {
+					this.$data.basket.push(product);
+				}
+				this.getSumPrice();
+			});
 		this.getJson(`${API + this.catalogUrl}`)
 			.then(data => {
 				for(let product of data) {
 					this.products.push(product);
 					this.filteredProducts.push(product);
-					this.basket.push(product);
-					this.checkBasket();
 				}
-			})
+			});
 	}
 });

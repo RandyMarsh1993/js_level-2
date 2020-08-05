@@ -169,8 +169,7 @@ img[class="picture"]:hover {
 	align-items: center;
 	justify-content: space-between;
     margin-top: 30px;
-	
-	min-height: 390px;
+	min-height: 350px;
     margin-bottom: 100px;
 }
 
