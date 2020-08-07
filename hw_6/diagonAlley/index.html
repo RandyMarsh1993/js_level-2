@@ -20,19 +20,16 @@
 					<ul class="menu">
 						<li><a href="#">Главная</a></li>
 						<li>Каталог</li>
-						<li id="openBasketBtn" v-on:click="isVisibleBasket = !isVisibleBasket">Корзина</li>
+						<li id="openBasketBtn" v-on:click="$refs.basket.isVisibleBasket = !$refs.basket.isVisibleBasket">Корзина</li>
 						<li><a href="#">Контакты</a></li>
 					</ul>
 				</nav>
 			</header>
-			<searchfield @filter-products="filterProducts"
-			:search="searchLine"></searchfield>
+			<searchfield></searchfield>
 			<div class="content">
-				<basket :basket="basket" :visibility="isVisibleBasket"
-				:sumPrice="sumPrice"
-				v-on:removeProduct="removeProduct"></basket>
+				<basket ref="basket"></basket>
 				<h2 class="heading">Каталог</h2>
-				<products :products="filteredProducts" :img="img" @add-product="addProduct"></products>
+				<products ref="products"></products>
 			</div>
 		</div>
 		<footer>

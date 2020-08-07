@@ -80,6 +80,7 @@ nav {
     list-style-type: none;
     text-transform: uppercase;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .menu li a:hover {
@@ -150,6 +151,7 @@ nav {
     font-size: 32px;
     padding-left: 30px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 img[class="picture"] {
