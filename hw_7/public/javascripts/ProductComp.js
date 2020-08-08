@@ -20,6 +20,17 @@ Vue.component('products', {
 					this.filteredproducts.push(product);
 				}
 			});
+
+		/*
+		this.$parent.getJson(`../../db/products`)
+		.then(data => {
+			console.log(data);
+			for (let product of data) {
+				this.products.push(product);
+				this.filteredproducts.push(product);
+			}
+		});
+		*/
 	},
 	template: `<div class="content-wrapper products">
 					<product
@@ -34,9 +45,9 @@ Vue.component('products', {
 Vue.component('product', {
 	props: ['product'],
 	template: `<div class="product-page">
-					<a href="#" class="product-page__title link">{{product.title}}</a>
+					<a v-bind:href="product.href" class="product-page__title link">{{product.title}}</a>
 					<span class="product-page__price">{{product.price}}</span>
-					<a href="#" class="product-page__image"><img v-bind:src="product.img" alt="" width="250" class="catalog-pic"/></a>
+					<a v-bind:href="product.href" class="product-page__image"><img v-bind:src="product.img" alt="" width="250" class="catalog-pic"/></a>
 					<div class="buttons-wrapper">
 						<button class="toBasketBtn" @click="$parent.$parent.$refs.basket.addProduct(product)">Купить</button>
 					</div>

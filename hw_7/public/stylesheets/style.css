@@ -9,6 +9,374 @@
 }
 
 * {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+body {
+    height: 100%;
+    background-color: floralwhite;
+}
+
+header {
+    background-image: url("img/fon/alley2.jpg");
+    background-attachment: fixed;
+    height: 190px;
+}
+
+.logo {
+    float: left;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.name {
+    float: right;
+    margin-right: 70px;
+    margin-top: 22px;
+    font-family: neumann;
+    color: floralwhite;
+    font-size: 85px;
+}
+
+.menu > li {
+    display: inline-block;
+    padding-top: 5px;
+    height: 35px;
+    width: 130px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid floralwhite;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #333;
+    margin-top: 2px;
+}
+
+.menu li ul li {
+    display: none;
+    text-align: left;
+    padding-left: 25px;
+    padding-top: 5px;
+    margin-top: 2px;
+    display: non;
+    margin-left: -60px;
+    border: 1px solid floralwhite;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    background-color: #333;
+    height: 35px;
+    width: 240px;
+    color: black;
+}
+
+.menu li ul {
+    position: fixed;
+}
+
+
+
+nav {
+    cursor: pointer;
+    float: right;
+    margin-right: 3px;
+}
+
+.menu li,
+.menu li a {
+    text-decoration-style: none;
+    color: antiquewhite;
+    font-family: neumann;
+    font-size: 20px;
+    line-height: px;
+    text-decoration: none;
+    list-style-type: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.menu li:hover ul li {
+    display: block;
+}
+
+.menu li a:hover {
+    color: #333;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu li:hover {
+    color: #333;
+    background-color: floralwhite;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.menu li a:active {
+    background-color: #bbb;
+}
+
+.menu li:active {
+    background-color: #bbb;
+}
+
+
+
+.main {
+    color: black;
+    font-size: 30px;
+    line-height: 50px;
+    margin-top: 60px;
+    font-family: neumann;
+}
+
+.heading {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+    color: black;
+    font-family: neumann;
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.description {
+    color: black;
+    font-family: Avara;
+    font-size: 26px;
+    line-height: 36px;
+}
+
+.detailed {
+    color: #484343;
+    font-family: Avara;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: left;
+}
+
+.product {
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    margin-right: 85px;
+    color: black;
+    font-size: 45px;
+    font-family: neumann;
+    font-weight: 600;
+}
+
+img[class="picture"] {
+    outline: 2px solid grey;
+    margin-right: 30px;
+    float: left;
+}
+
+img[class="picture"]:hover {
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.contacts {
+    padding-top: 30px;
+    font-family: neumann;
+    font-size: 20px;
+}
+
+footer {
+    height: 40px;
+    padding-top: 15px;
+    padding-right: 90px;
+    margin-top: 100px;
+    font-size: 20px;
+    color: antiquewhite;
+    background-color: #333;
+    text-align: right;
+    clear: both;
+}
+
+.characteristics {
+    font-family: Avara;
+    font-weight: 700;
+    width: 570px;
+    height: 400px;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.characteristics td {
+    border: 2px solid #565656;
+}
+
+.upper-line {
+    height: 65px;
+}
+
+
+.properties {
+    color: #444;
+    font-family: Avara;
+    font-size: 26px;
+    line-height: 44px;
+    list-style-image: url("img/pentacle_PNG51.png")
+}
+
+.nimbus-table {
+    font-family: Avara;
+    text-align: center;
+    width: 350px;
+    height: 300px;
+    border-collapse: collapse;
+}
+
+.nimbus-table td {
+    border: 2px solid #565656;
+}
+
+.second-column {
+    width: 90px;
+}
+
+.detailed:first-letter {
+    color: brown;
+    font-family: neumann;
+    font-size: 45px;
+}
+
+.description:first-letter {
+    color: brown;
+    font-family: neumann;
+    font-size: 45px;
+}
+
+.link:hover {
+    color: #555;
+    text-decoration: underline;
+    transition: all 0.2s ease-in-out;
+}
+
+.link:active {
+    color: brown;
+}
+
+.catalog-pic:hover {
+    outline: 2px solid #333;
+}
+
+form[action="#"] {
+    font-family: neumann;
+    font-size: 18px;
+}
+
+.picture {
+    float: lef;
+    margin-top: 20px;
+}
+
+
+
+.picture[alt="hat-invisibility"] {
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.properties-hat {
+    display: table;
+}
+
+.heading-hat {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.product-name-hat {
+    margin-right: 25px;
+}
+
+.catalog-pic-hat {
+    margin-left: 60px;
+}
+
+.carpet-page {
+    margin-top: 40px;
+}
+
+.nimbus-page {
+    margin-top: 60px;
+}
+
+.previous-link,
+.next-link {
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    border: 1px solid floralwhite;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    cursor: pointer;
+    background-color: #333;
+    font-family: neumann;
+    color: antiquewhite;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 75px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 4px;
+    margin-bottom: 90px;
+    
+}
+
+.previous-link:hover {
+    color: black;
+    background-color: floralwhite;
+    border: 1px solid floralwhite;
+    font-weight: 800;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.next-link:hover {
+    color: black;
+    background-color: floralwhite;
+    border: 1px solid floralwhite;
+    font-weight: 800;
+    font-size: 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.previous-link:active {
+    background-color: #ccc;
+}
+
+.next-link:active {
+    background-color: #ccc;
+}
+
+.product-name-nimbus {
+    margin-right: 137px;
+}
+
+
+
+
+* {
     margin: 0;
 	padding: 0;
 }
@@ -26,7 +394,7 @@ html {
 }
 
 header {
-    background-image: url("img/background/alley2.jpg");
+    background-image: url("../img/background/alley2.jpg");
     background-attachment: fixed;
     height: 190px;
 }

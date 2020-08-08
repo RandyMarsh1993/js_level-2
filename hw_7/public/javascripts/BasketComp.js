@@ -5,11 +5,32 @@ Vue.component('basket', {
 			basketUrl: '/getBasket.json',
 			isVisibleBasket: false,
 			sumPrice: 0
-			
 		}
 	},
 	methods: {
 		addProduct(product) {
+			/*
+			let isFound = this.basket.find(el => el.id === product.id);
+			if (isFound) {
+				this.$parent.putJson(`/api/basket/${isFound.id}`, {count: 1})
+					.then(data => {
+						if (data.result === 1) {
+							isFound.count++;
+						}
+						this.getSumPrice(); 
+					})
+			} else {
+				const prod = Object.assign({count: 1}, product);
+				this.$parent.postJson(`api/basket`, prod)
+					.then(data => {
+						if (data.result === 1) {
+							this.basket.push(prod)
+						}
+						this.getSumPrice(); 
+					})
+			}
+			*/
+			
 			this.$parent.getJson(`${API}/addToBasket.json`)
 				.then(data => {
 					if (data.result === 1) {
@@ -25,6 +46,7 @@ Vue.component('basket', {
 					}
 					this.getSumPrice(); 
 				});
+				
 		},
 		removeproduct(product) {
 			this.$parent.getJson(`${API}/deleteFromBasket.json`)
@@ -92,7 +114,7 @@ Vue.component('basket_item', {
 						<td>{{product.title}}</td>
 						<td>{{product.price}}</td>
 						<td class="productCount">{{product.count}}</td>
-						<td @click="$emit('removeproduct', product)"><i class="far fa-trash-alt removeProductBtn" aria-hidden="true"></i></td>
+						<td @click="$emit('removeproduct', product)"><i class="far fa-trash-alt removeProductBtn"></i>X</td>
 					</tr>
 				</tbody>`
 });

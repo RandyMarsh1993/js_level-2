@@ -1,0 +1,24 @@
+{
+  "amount": 3330,
+  "countGoods": 3,
+  "contents": [
+    {
+      "id": 1,
+      "title": "Ковёр-самолёт",
+      "price": 700,
+      "count": 0
+    },
+    {
+      "id": 2,
+      "title": "Нимбус 2000",
+      "price": 2400,
+      "count": 0
+    },
+    {
+      "id": 3,
+      "title": "Шапка-невидимка",
+      "price": 230,
+      "count": 0
+    }
+  ]
+}
