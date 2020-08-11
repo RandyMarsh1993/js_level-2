@@ -1,3 +1,5 @@
+const API = 'https://raw.githubusercontent.com/RandyMarsh1993/diagonAlley_API/master/responses';
+
 Vue.component('basket', {
 	data() {
 		return {
@@ -114,7 +116,7 @@ Vue.component('basket_item', {
 						<td>{{product.title}}</td>
 						<td>{{product.price}}</td>
 						<td class="productCount">{{product.count}}</td>
-						<td @click="$emit('removeproduct', product)"><i class="far fa-trash-alt removeProductBtn"></i>X</td>
+						<td @click="$emit('removeproduct', product)"><i class="far fa-trash-alt"></i>X</td>
 					</tr>
 				</tbody>`
 });

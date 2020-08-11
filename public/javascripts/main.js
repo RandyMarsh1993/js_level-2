@@ -1,5 +1,9 @@
 const API = 'https://raw.githubusercontent.com/RandyMarsh1993/diagonAlley_API/master/responses';
 
+import Basket from './BasketComp.js';
+import Products from './ProductComp.js';
+import Search from './SearchComp.js';
+
 const app = new Vue({
 	el: '#app',
 	
